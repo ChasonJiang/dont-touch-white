@@ -1,0 +1,80 @@
+<head>
+    <meta charset="utf-8">
+    <title>myGame</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            
+        }
+        #canvas{
+            
+            border: 1px solid;
+            background: green;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        #game{
+            display: grid;
+            grid-template-columns: 720;
+            grid-template-rows: 1280;
+
+            /* width: 100%;
+            height: 100%; */
+            text-align: center;
+            justify-content: center;
+        }
+        
+    </style>
+    <script type="text/javascript" src="./js/Block.js"></script>
+    <script type="text/javascript" src="./js/Player.js"></script>
+    <script type="text/javascript" src="./js/Input.js"></script>
+    <script type="text/javascript" src="./js/Game.js"></script>
+    <script type="text/javascript">
+        function main() {
+            var game = new Game();
+            game.init(input);
+        
+        }
+        function screen_cilck(e){
+            p = getEventPosition(e);
+            //判断点击了那个矩形
+            if(p.y <= 50){
+                console.log('你点击了第一个矩形',p);
+            }
+            if(p.y>arr[0].height && p.y <= (arr[1].height+arr[1].y)){
+                console.log('你点击了第二个矩形',p);
+            }
+            if(p.y>(arr[1].height+arr[1].y) && p.y <= (arr[2].height+arr[2].y)){
+                console.log('你点击了第三个矩形',p)
+            }
+    
+        }
+        function getEventPosition(ev){
+                var x, y;
+                if (ev.layerX || ev.layerX == 0) {
+                    x = ev.layerX;
+                    y = ev.layerY;
+                } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+                    x = ev.offsetX;
+                    y = ev.offsetY;
+                }
+                return {x: x, y: y};
+        }
+    
+    </script>
+
+
+</head>
+<body onload="main();" >
+        <div id="game">
+            <div id="header"><p>是男人就下100层之别踩白块</p></div>
+            <canvas id="canvas" width="540" height="960" onclick="screen_cilck(event)" >
+                <p>该浏览器不支持Canvas!</p>
+            </canvas>
+        </div>
+
+
+</body>
